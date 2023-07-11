@@ -30,7 +30,7 @@ class BOGPayment
         $fail_url = URL::to(config('bogpayment.fail_url'));
 
         $params = array_merge([
-            'lang' => $lang,
+            'lang_code' => $lang,
             'page_id' => $page_id,
             'merch_id' => $merchant_id,
             'back_url_s' => $success_url,
@@ -55,7 +55,8 @@ class BOGPayment
 
             header('WWW-Authenticate: Basic realm="' . $shop_name . '"');
         } else {
-            if ($_SERVER['PHP_AUTH_USER'] != config('bogpayment.http_auth_user')
+            if (
+                $_SERVER['PHP_AUTH_USER'] != config('bogpayment.http_auth_user')
                 || $_SERVER['PHP_AUTH_PW'] != config('bogpayment.http_auth_pass')
             ) {
                 abort(401);
@@ -179,7 +180,7 @@ class BOGPayment
         $fail_url = rawurlencode(URL::to(config('bogpayment.fail_url')));
 
         $params = array_merge([
-            'lang' => $lang,
+            'lang_code' => $lang,
             'page_id' => $page_id,
             'merch_id' => $merchant_id,
             'back_url_s' => $success_url,
