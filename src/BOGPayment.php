@@ -21,7 +21,7 @@ class BOGPayment
      * @param bool $preAuth
      * @return RedirectResponse
      */
-    function redirect(array $additional_params = [], bool $preAuth = false): RedirectResponse
+    function redirect(array $additional_params = [], bool $preAuth = false)
     {
         $lang = config('bogpayment.language');
         $merchant_id = config('bogpayment.merchant_id');
@@ -42,7 +42,7 @@ class BOGPayment
 
         $url = config('bogpayment.url') . '?' . $query_params;
 
-        return redirect($url);
+        return $url;
     }
 
     /**
