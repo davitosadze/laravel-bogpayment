@@ -173,7 +173,7 @@ class BOGPayment
         }
 
         if ($mode === 'check') {
-            $response->checkSuccessRecurring($data);
+            $response->sendSuccessRecurring($data);
         } else if ($mode === 'register') {
             $response->registerSuccess();
         }
