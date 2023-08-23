@@ -51,12 +51,7 @@ class XMLResponse
             <exponent>2</exponent>
         </account-amount>
     </purchase>
-       <order-params>
-        <param>
-            <name>card_on_file</name>
-            <value>CIT</value>
-        </param>
-    </order-params>
+ 
 </payment-avail-response>
 XML;
 
