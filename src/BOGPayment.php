@@ -186,7 +186,7 @@ class BOGPayment
      * @param array $additional_params
      * @return StreamInterface
      */
-    function repeat(string $trx_id, array $additional_params = []): StreamInterface
+    function repeat(string $trx_id, array $additional_params = [])
     {
         $lang = config('bogpayment.language');
         $merchant_id = rawurlencode(config('bogpayment.merchant_id'));
@@ -206,6 +206,7 @@ class BOGPayment
         $query_params = http_build_query($params);
 
         $url = config('bogpayment.url') . '?' . $query_params;
+        return $url;
 
         $client = new Client;
         $request = $client->get($url);
