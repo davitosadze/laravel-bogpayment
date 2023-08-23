@@ -32,31 +32,55 @@ class XMLResponse
         $account_id = $this->clean($data['account_id'], 32);
         $amount = intval($data['amount']);
         $currency = $this->clean($data['currency']);
+        $card_id = $this->clean($data['card_id']);
 
+        if ($card_id) {
+            $content = <<<XML
+            <payment-avail-response>
+                <result>
+                    <code>1</code>
+                    <desc>OK</desc>
+                </result>
+                <card>
+                    <id>{$card_id}</id>
+                </card>
+                <merchant-trx>{$trx_id}</merchant-trx>
+                 <purchase>
+                    <shortDesc>{$short_desc}</shortDesc>
+                    <longDesc>{$long_desc}</longDesc>
+                    <account-amount>
+                        <id>{$account_id}</id>
+                        <amount>{$amount}</amount>
+                        <currency>{$currency}</currency>
+                        <exponent>2</exponent>
+                    </account-amount>
+                </purchase>
+             
+            </payment-avail-response>
+            XML;
+        } else {
+            $content = <<<XML
+            <payment-avail-response>
+                <result>
+                    <code>1</code>
+                    <desc>OK</desc>
+                </result>
+                <merchant-trx>{$trx_id}</merchant-trx>
+                 <purchase>
+                    <shortDesc>{$short_desc}</shortDesc>
+                    <longDesc>{$long_desc}</longDesc>
+                    <account-amount>
+                        <id>{$account_id}</id>
+                        <amount>{$amount}</amount>
+                        <currency>{$currency}</currency>
+                        <exponent>2</exponent>
+                    </account-amount>
+                </purchase>
+             
+            </payment-avail-response>
+            XML;
+        }
 
-        $content = <<<XML
-    <payment-avail-response>
-        <result>
-            <code>1</code>
-            <desc>OK</desc>
-        </result>
-        <card>
-            <id>UFWHO66XZ0OQ</id>
-        </card>
-        <merchant-trx>{$trx_id}</merchant-trx>
-         <purchase>
-            <shortDesc>{$short_desc}</shortDesc>
-            <longDesc>{$long_desc}</longDesc>
-            <account-amount>
-                <id>{$account_id}</id>
-                <amount>{$amount}</amount>
-                <currency>{$currency}</currency>
-                <exponent>2</exponent>
-            </account-amount>
-        </purchase>
-     
-    </payment-avail-response>
-    XML;
 
         $this->send($content);
     }

@@ -164,20 +164,6 @@ class BOGPayment
         }
     }
 
-    function sendSuccessRecurring($mode = 'check', $data = [])
-    {
-        $response = new XMLResponse();
-
-        if (config('bogpayment.debug')) {
-            Log::debug('BOG Payment -> sendSuccessRecurring', compact('mode', 'data'));
-        }
-
-        if ($mode === 'check') {
-            $response->sendSuccessRecurring($data);
-        } else if ($mode === 'register') {
-            $response->registerSuccess();
-        }
-    }
 
     /**
      * This method is used for recurring process
@@ -206,6 +192,7 @@ class BOGPayment
         $query_params = http_build_query($params);
 
         $url = config('bogpayment.url') . '?' . $query_params;
+
         return $url;
 
         $client = new Client;
