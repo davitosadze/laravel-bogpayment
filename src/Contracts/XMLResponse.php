@@ -32,9 +32,7 @@ class XMLResponse
         $account_id = $this->clean($data['account_id'], 32);
         $amount = intval($data['amount']);
         $currency = $this->clean($data['currency']);
-        $primary_trx_id = $this->clean($data['primary_trx_id']);
 
-        $repeat_txn = $primary_trx_id ? "<primaryTrxPcid>{$primary_trx_id}</primaryTrxPcid>" : '';
 
         $content = <<<XML
 <payment-avail-response>
@@ -43,8 +41,7 @@ class XMLResponse
         <desc>OK</desc>
     </result>
     <merchant-trx>{$trx_id}</merchant-trx>
-    {$repeat_txn}
-    <purchase>
+     <purchase>
         <shortDesc>{$short_desc}</shortDesc>
         <longDesc>{$long_desc}</longDesc>
         <account-amount>
