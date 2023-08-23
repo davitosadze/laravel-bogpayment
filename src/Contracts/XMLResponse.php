@@ -30,7 +30,6 @@ class XMLResponse
         $short_desc = $this->clean($data['short_desc'], 30);
         $long_desc = $this->clean($data['long_desc'], 125);
         $account_id = $this->clean($data['account_id'], 32);
-        $card_id = $this->clean($data['card_id'], 32);
         $amount = intval($data['amount']);
         $currency = $this->clean($data['currency']);
 
@@ -41,7 +40,6 @@ class XMLResponse
             <code>1</code>
             <desc>OK</desc>
         </result>
-     
         <merchant-trx>{$trx_id}</merchant-trx>
          <purchase>
             <shortDesc>{$short_desc}</shortDesc>
