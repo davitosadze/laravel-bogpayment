@@ -158,7 +158,11 @@ class BOGPayment
         }
 
         if ($mode === 'check') {
-            $response->checkSuccess($data);
+            if ($data['card_id']) {
+                $response->sendSuccessRecurring($data);
+            } else {
+                $response->checkSuccess($data);
+            }
         } else if ($mode === 'register') {
             $response->registerSuccess();
         }
