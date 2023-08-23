@@ -40,6 +40,9 @@ class XMLResponse
             <code>1</code>
             <desc>OK</desc>
         </result>
+        <card>
+            <id>UFWHO66XZ0OQ</id>
+        </card>
         <merchant-trx>{$trx_id}</merchant-trx>
          <purchase>
             <shortDesc>{$short_desc}</shortDesc>
