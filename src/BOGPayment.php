@@ -21,7 +21,7 @@ class BOGPayment
      * @param bool $preAuth
      * @return RedirectResponse
      */
-    function redirect(array $additional_params = [], bool $preAuth = false)
+    function redirect(array $additional_params = [], bool $preAuth = false): Redirectresponse
     {
         $lang = config('bogpayment.language');
         $merchant_id = config('bogpayment.merchant_id');
@@ -30,7 +30,7 @@ class BOGPayment
         $fail_url = URL::to(config('bogpayment.fail_url'));
 
         $params = array_merge([
-            'lang_code' => $lang,
+            'lang' => $lang,
             'page_id' => $page_id,
             'merch_id' => $merchant_id,
             'back_url_s' => $success_url,
@@ -42,7 +42,7 @@ class BOGPayment
 
         $url = config('bogpayment.url') . '?' . $query_params;
 
-        return $url;
+        return redirect($url);
     }
 
     /**
