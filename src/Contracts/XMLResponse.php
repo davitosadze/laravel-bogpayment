@@ -58,6 +58,44 @@ XML;
         $this->send($content);
     }
 
+    function checkSuccessRecurring($data = [])
+    {
+        $trx_id = $this->clean($data['trx_id'], 50);
+        $short_desc = $this->clean($data['short_desc'], 30);
+        $long_desc = $this->clean($data['long_desc'], 125);
+        $account_id = $this->clean($data['account_id'], 32);
+        $card_id = $this->clean($data['card_id'], 32);
+        $amount = intval($data['amount']);
+        $currency = $this->clean($data['currency']);
+
+
+        $content = <<<XML
+<payment-avail-response>
+    <result>
+        <code>1</code>
+        <desc>OK</desc>
+    </result>
+    <card>
+        <id>{$card_id}</id>
+    </card>
+    <merchant-trx>{$trx_id}</merchant-trx>
+     <purchase>
+        <shortDesc>{$short_desc}</shortDesc>
+        <longDesc>{$long_desc}</longDesc>
+        <account-amount>
+            <id>{$account_id}</id>
+            <amount>{$amount}</amount>
+            <currency>{$currency}</currency>
+            <exponent>2</exponent>
+        </account-amount>
+    </purchase>
+ 
+</payment-avail-response>
+XML;
+
+        $this->send($content);
+    }
+
     /**
      * This method is used to send error on check process
      *

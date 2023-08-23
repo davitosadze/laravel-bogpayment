@@ -164,6 +164,21 @@ class BOGPayment
         }
     }
 
+    function sendSuccessRecurring($mode = 'check', $data = [])
+    {
+        $response = new XMLResponse();
+
+        if (config('bogpayment.debug')) {
+            Log::debug('BOG Payment -> sendSuccessRecurring', compact('mode', 'data'));
+        }
+
+        if ($mode === 'check') {
+            $response->checkSuccessRecurring($data);
+        } else if ($mode === 'register') {
+            $response->registerSuccess();
+        }
+    }
+
     /**
      * This method is used for recurring process
      *
