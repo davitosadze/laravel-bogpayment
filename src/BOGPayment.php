@@ -193,11 +193,9 @@ class BOGPayment
 
         $url = config('bogpayment.url') . '?' . $query_params;
 
-        return $url;
 
         $client = new Client;
-        $request = $client->get($url);
-        return $request->getBody();
+        $client->get($url);
     }
 
     /**
