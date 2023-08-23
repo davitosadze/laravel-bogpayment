@@ -192,8 +192,7 @@ class BOGPayment
         $query_params = http_build_query($params);
 
         $url = config('bogpayment.url') . '?' . $query_params;
-
-        file_get_contents($url);
+        return $url;
     }
 
     /**
