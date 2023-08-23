@@ -34,32 +34,8 @@ class XMLResponse
         $amount = intval($data['amount']);
         $currency = $this->clean($data['currency']);
 
-        if ($card_id) {
-            $content = <<<XML
-    <payment-avail-response>
-        <result>
-            <code>1</code>
-            <desc>OK</desc>
-        </result>
-        <card>
-            <id>{$card_id}</id>
-        </card>
-        <merchant-trx>{$trx_id}</merchant-trx>
-         <purchase>
-            <shortDesc>{$short_desc}</shortDesc>
-            <longDesc>{$long_desc}</longDesc>
-            <account-amount>
-                <id>{$account_id}</id>
-                <amount>{$amount}</amount>
-                <currency>{$currency}</currency>
-                <exponent>2</exponent>
-            </account-amount>
-        </purchase>
-     
-    </payment-avail-response>
-    XML;
-        } else {
-            $content = <<<XML
+
+        $content = <<<XML
     <payment-avail-response>
         <result>
             <code>1</code>
@@ -80,7 +56,6 @@ class XMLResponse
      
     </payment-avail-response>
     XML;
-        }
 
         $this->send($content);
     }
