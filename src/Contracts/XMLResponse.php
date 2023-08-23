@@ -34,6 +34,7 @@ class XMLResponse
         $currency = $this->clean($data['currency']);
         $card_id = $this->clean($data['card_id']);
 
+
         if ($card_id) {
             $content = <<<XML
             <payment-avail-response>

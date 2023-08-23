@@ -172,7 +172,7 @@ class BOGPayment
      * @param array $additional_params
      * @return StreamInterface
      */
-    function repeat(string $trx_id, array $additional_params = [])
+    function repeat(array $additional_params = [])
     {
         $lang = config('bogpayment.language');
         $merchant_id = rawurlencode(config('bogpayment.merchant_id'));
@@ -186,7 +186,6 @@ class BOGPayment
             'merch_id' => $merchant_id,
             'back_url_s' => $success_url,
             'back_url_f' => $fail_url,
-            'o.trx_id' => $trx_id
         ], $additional_params);
 
         $query_params = http_build_query($params);
