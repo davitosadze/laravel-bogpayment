@@ -175,10 +175,11 @@ class BOGPayment
     function repeat(array $additional_params = [])
     {
         $lang = config('bogpayment.language');
-        $merchant_id = rawurlencode(config('bogpayment.merchant_id'));
-        $page_id = rawurlencode(config('bogpayment.page_id'));
-        $success_url = rawurlencode(URL::to(config('bogpayment.success_url')));
-        $fail_url = rawurlencode(URL::to(config('bogpayment.fail_url')));
+        $merchant_id = config('bogpayment.merchant_id');
+        $page_id = config('bogpayment.page_id');
+        $success_url = URL::to(config('bogpayment.success_url'));
+        $fail_url = URL::to(config('bogpayment.fail_url'));
+
 
         $params = array_merge([
             'lang_code' => $lang,
